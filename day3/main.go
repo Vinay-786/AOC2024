@@ -25,8 +25,15 @@ func main() {
 	fmt.Println(buffer)
 
 	var answer int = 0
+	var enable bool = true
 	for i := 0; i < len(buffer); i++ {
-		if buffer[i] == 'm' {
+		if i <= len(buffer)-4 && buffer[i:i+4] == "do()" {
+			enable = true
+		}
+		if i <= len(buffer)-7 && buffer[i:i+7] == "don't()" {
+			enable = false
+		}
+		if enable && buffer[i] == 'm' {
 			// check for mul
 			if buffer[i+1] == 'u' && buffer[i+2] == 'l' && buffer[i+3] == '(' {
 
